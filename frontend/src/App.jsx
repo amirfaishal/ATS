@@ -17,7 +17,7 @@ const handleFileUpload = async (selectedFile) => {
   formData.append("file", selectedFile);
 
   try {
-    const res = await fetch("http://localhost:8000/api/predict", {
+    const res = await fetch("https://atsbackend-5i9j.onrender.com/api/predict", {
       method: "POST",
       body: formData,
     });
@@ -60,7 +60,7 @@ const handleFileUpload = async (selectedFile) => {
           feedback on your resume. Highlight your skills in Python, Java, DSA, and more.
           Land interviews faster with an ATS-optimized resume.
         </p>
-
+<div className="feedback-wrapper">
         <div className="container">
           {!score && !loading && <FileUpload onFileSelected={handleFileUpload} />}
 
@@ -86,22 +86,19 @@ const handleFileUpload = async (selectedFile) => {
           )}
         </div>
       </div>
+ 
+    {/* Tips above on desktop */}
+    {tips.length > 0 && (
+      <div className="tips-container">
+        <h3>📝 Tips to Improve Your Resume:</h3>
+        <ul>
+          {tips.map((tip, index) => (
+            <li key={index}>{tip}</li>
+          ))}
+        </ul>
+      </div>
+    )}</div>
 
-    <div className="hero-image">
-  <div className="hero-3d-wrapper">
-    <Hero3D />
-  </div>
-  {tips.length > 0 && (
-    <div className="tips-container">
-      <h3>📝 Tips to Improve Your Resume:</h3>
-      <ul>
-        {tips.map((tip, index) => (
-          <li key={index}>{tip}</li>
-        ))}
-      </ul>
-    </div>
-  )}
-</div>
 
       </div>
   
