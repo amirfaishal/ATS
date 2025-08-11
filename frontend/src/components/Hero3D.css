@@ -1,0 +1,46 @@
+.hero-3d-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  perspective: 1400px; /* gives the subtle 3d perspective */
+}
+
+/* the svg itself will float+rotate modestly */
+.hero-3d-svg {
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  transform-origin: center;
+  animation: float3d 5.5s ease-in-out infinite, tilt3d 8s ease-in-out infinite;
+  will-change: transform;
+  transition: transform 250ms ease;
+}
+
+/* push the front card upward a bit when hovering - interactive feel */
+.hero-3d-wrapper:hover .card-front {
+  transform: translate(-12px, -28px) translateZ(16px);
+  transition: transform 300ms cubic-bezier(.2,.9,.3,1);
+}
+
+/* subtle depth separation */
+.card-back { transform: translateZ(-6px) scale(0.995); }
+.card-mid  { transform: translateZ(0px); }
+.card-front { transform: translateZ(8px); }
+
+/* animations */
+@keyframes float3d {
+  0%, 100% { transform: translateY(0) rotateZ(0deg); }
+  50%     { transform: translateY(-12px) rotateZ(0.3deg); }
+}
+@keyframes tilt3d {
+  0%   { transform: rotateX(0deg) rotateY(0deg); }
+  33%  { transform: rotateX(2deg) rotateY(-2deg); }
+  66%  { transform: rotateX(-1deg) rotateY(1deg); }
+  100% { transform: rotateX(0deg) rotateY(0deg); }
+}
+
+/* make svg crisp on mobile */
+.hero-3d-svg svg {
+  shape-rendering: geometricPrecision;
+}

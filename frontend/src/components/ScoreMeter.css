@@ -1,0 +1,83 @@
+.meter-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  padding: 15px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ffffff, #f1f3ff);
+  box-shadow: 
+    0 12px 25px rgba(0, 0, 0, 0.08),
+    inset 0 4px 10px rgba(255, 255, 255, 0.7),
+    inset 0 -4px 10px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.6s ease forwards, pulseGlow 3s ease-in-out infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+}
+
+/* Score text overlay */
+.meter-score {
+  position: absolute;
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #2575fc;
+  text-shadow: 0 2px 6px rgba(37, 117, 252, 0.7);
+  user-select: none;
+  pointer-events: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 1;
+}
+
+/* Pulse animation triggered on update */
+.meter-score.pulse {
+  animation: pulseText 0.5s ease forwards;
+}
+
+/* Text pulse glow animation */
+@keyframes pulseText {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    text-shadow: 0 2px 6px rgba(37, 117, 252, 0.7);
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.9;
+    text-shadow: 0 0 20px rgba(37, 117, 252, 1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    text-shadow: 0 2px 6px rgba(37, 117, 252, 0.7);
+  }
+}
+
+/* Glow and fade-in for container */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 
+      0 12px 25px rgba(0, 0, 0, 0.08),
+      inset 0 4px 10px rgba(255, 255, 255, 0.7),
+      inset 0 -4px 10px rgba(0, 0, 0, 0.05),
+      0 0 15px rgba(106, 17, 203, 0.3);
+  }
+  50% {
+    box-shadow: 
+      0 12px 25px rgba(0, 0, 0, 0.08),
+      inset 0 4px 10px rgba(255, 255, 255, 0.7),
+      inset 0 -4px 10px rgba(0, 0, 0, 0.05),
+      0 0 25px rgba(37, 117, 25)
+  }}.meter-container > svg {
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
